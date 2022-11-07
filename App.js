@@ -1,7 +1,14 @@
-import { Button, SafeAreaView, StyleSheet, Text, View } from "react-native";
+import {
+  Button,
+  Image,
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 import React from "react";
 import { useFonts } from "expo-font";
-
+import logo from "./assets/images/logo.png";
 const App = () => {
   const [fonteCarregada] = useFonts({
     monoton: require("./assets/fonts/Monoton-Regular.ttf"),
@@ -12,6 +19,7 @@ const App = () => {
   return (
     <SafeAreaView style={estilos.container}>
       <View style={estilos.viewLogo}>
+        <Image style={estilos.logo} source={logo} />
         <Text style={estilos.tituloApp}>Netfrix Filmes</Text>
       </View>
       <View style={estilos.viewBotoes}>
@@ -41,6 +49,10 @@ const estilos = StyleSheet.create({
     textAlign: "center",
     justifyContent: "flex-end",
     alignItems: "center",
+  },
+  logo: {
+    width: 200,
+    height: 200,
   },
   tituloApp: {
     fontSize: 36,
