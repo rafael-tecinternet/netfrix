@@ -1,6 +1,6 @@
 import {
-  Button,
   Image,
+  Pressable,
   SafeAreaView,
   StyleSheet,
   Text,
@@ -9,6 +9,7 @@ import {
 import React from "react";
 import { useFonts } from "expo-font";
 import logo from "./assets/images/logo.png";
+const corPrimaria = "#5451a6";
 const App = () => {
   const [fonteCarregada] = useFonts({
     monoton: require("./assets/fonts/Monoton-Regular.ttf"),
@@ -23,12 +24,20 @@ const App = () => {
         <Text style={estilos.tituloApp}>Netfrix Filmes</Text>
       </View>
       <View style={estilos.viewBotoes}>
-        <Button title="Buscar filmes" />
-        <Button title="Favoritos" />
+        <Pressable style={estilos.botaoInicial}>
+          <Text style={estilos.textoBotao}>Buscar Filmes</Text>
+        </Pressable>
+        <Pressable style={estilos.botaoInicial}>
+          <Text style={estilos.textoBotao}>Favoritos</Text>
+        </Pressable>
       </View>
       <View style={estilos.viewRodape}>
-        <Button title="Privacidade" />
-        <Button title="Sobre" />
+        <Pressable style={estilos.botaoRodape}>
+          <Text style={estilos.textoRodape}>Privacidade</Text>
+        </Pressable>
+        <Pressable style={estilos.botaoRodape}>
+          <Text style={estilos.textoRodape}>Sobre</Text>
+        </Pressable>
       </View>
     </SafeAreaView>
   );
@@ -45,7 +54,7 @@ const estilos = StyleSheet.create({
   },
   viewLogo: {
     flex: 3,
-    width: "80%",
+    width: "81%",
     textAlign: "center",
     justifyContent: "flex-end",
     alignItems: "center",
@@ -57,7 +66,7 @@ const estilos = StyleSheet.create({
   tituloApp: {
     fontSize: 36,
     fontFamily: "monoton",
-    color: "#5451a6",
+    color: corPrimaria,
     /* fontWeight: "bold", */
   },
   viewBotoes: {
@@ -67,11 +76,27 @@ const estilos = StyleSheet.create({
     alignItems: "flex-start",
     width: "80%",
   },
+  botaoInicial: {
+    borderStyle: "solid",
+    borderWidth: 2,
+    padding: 16,
+    backgroundColor: corPrimaria,
+  },
+  textoBotao: {
+    color: "white",
+  },
   viewRodape: {
     flex: 0.5,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    width: "80%",
+    width: "100%",
+    backgroundColor: corPrimaria,
+  },
+  botaoRodape: {
+    padding: 16,
+  },
+  textoRodape: {
+    color: "white",
   },
 });
