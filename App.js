@@ -9,6 +9,8 @@ import {
 import React from "react";
 import { useFonts } from "expo-font";
 import logo from "./assets/images/logo.png";
+import { Ionicons } from "@expo/vector-icons";
+
 const corPrimaria = "#5451a6";
 const App = () => {
   const [fonteCarregada] = useFonts({
@@ -25,18 +27,26 @@ const App = () => {
       </View>
       <View style={estilos.viewBotoes}>
         <Pressable style={estilos.botaoInicial}>
-          <Text style={estilos.textoBotao}>Buscar Filmes</Text>
+          <Text style={estilos.textoBotao}>
+            <Ionicons name="search" size={15} color="white" /> Buscar Filmes
+          </Text>
         </Pressable>
         <Pressable style={estilos.botaoInicial}>
-          <Text style={estilos.textoBotao}>Favoritos</Text>
+          <Text style={estilos.textoBotao}>
+            <Ionicons name="star" size={15} color="gold" /> Favoritos
+          </Text>
         </Pressable>
       </View>
       <View style={estilos.viewRodape}>
         <Pressable style={estilos.botaoRodape}>
-          <Text style={estilos.textoRodape}>Privacidade</Text>
+          <Text style={estilos.textoRodape}>
+            <Ionicons name="lock-closed" size={15} color="white" /> Privacidade
+          </Text>
         </Pressable>
         <Pressable style={estilos.botaoRodape}>
-          <Text style={estilos.textoRodape}>Sobre</Text>
+          <Text style={estilos.textoRodape}>
+            <Ionicons name="information-circle" size={15} color="white" /> Sobre
+          </Text>
         </Pressable>
       </View>
     </SafeAreaView>
@@ -81,6 +91,7 @@ const estilos = StyleSheet.create({
     borderWidth: 2,
     padding: 16,
     backgroundColor: corPrimaria,
+    borderRadius: 10,
   },
   textoBotao: {
     color: "white",
