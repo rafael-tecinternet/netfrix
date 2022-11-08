@@ -12,7 +12,7 @@ import { Ionicons } from "@expo/vector-icons";
 
 const corPrimaria = "#5451a6";
 
-const Home = () => {
+const Home = ({ navigation }) => {
   const [fonteCarregada] = useFonts({
     monoton: require("../../assets/fonts/Monoton-Regular.ttf"),
   });
@@ -39,12 +39,22 @@ const Home = () => {
         </Pressable>
       </View>
       <View style={estilos.viewRodape}>
-        <Pressable style={estilos.botaoRodape}>
+        <Pressable
+          style={estilos.botaoRodape}
+          onPress={() => {
+            navigation.navigate("Privacidade");
+          }}
+        >
           <Text style={estilos.textoRodape}>
             <Ionicons name="lock-closed" size={15} color="white" /> Privacidade
           </Text>
         </Pressable>
-        <Pressable style={estilos.botaoRodape}>
+        <Pressable
+          style={estilos.botaoRodape}
+          onPress={() => {
+            navigation.navigate("Sobre");
+          }}
+        >
           <Text style={estilos.textoRodape}>
             <Ionicons name="information-circle" size={15} color="white" /> Sobre
           </Text>

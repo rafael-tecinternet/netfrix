@@ -17,7 +17,7 @@ const App = () => {
       <StatusBar />
       {/* O NavigationContainer deve envolver todas as telas navegáveis do nosso APP. */}
       <NavigationContainer>
-        <Stack.Navigator>
+        <Stack.Navigator initialRouteName="Home">
           <Stack.Screen component={Home} name="Home" />
           <Stack.Screen component={FormBusca} name="FormBusca" />
           <Stack.Screen component={Favoritos} name="Favoritos" />

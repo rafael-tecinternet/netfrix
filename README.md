@@ -1,6 +1,6 @@
 # netfrix
 
-# App Dá Hora Filmes
+# NetFrix Filmes
 
 Aplicativo React Native que permite a busca por filmes usando a API **TMDB (The MovieDB Database)** e a seleção de filmes favoritos usando armazenamento offline/local no próprio dispositivo.
 
