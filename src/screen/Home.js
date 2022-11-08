@@ -27,12 +27,22 @@ const Home = ({ navigation }) => {
         <Text style={estilos.tituloApp}>Netfrix Filmes</Text>
       </View>
       <View style={estilos.viewBotoes}>
-        <Pressable style={estilos.botaoInicial}>
+        <Pressable
+          style={estilos.botaoInicial}
+          onPress={() => {
+            navigation.navigate("FormBusca");
+          }}
+        >
           <Text style={estilos.textoBotao}>
             <Ionicons name="search" size={15} color="white" /> Buscar Filmes
           </Text>
         </Pressable>
-        <Pressable style={estilos.botaoInicial}>
+        <Pressable
+          style={estilos.botaoInicial}
+          onPress={() => {
+            navigation.navigate("Favoritos");
+          }}
+        >
           <Text style={estilos.textoBotao}>
             <Ionicons name="star" size={15} color="gold" /> Favoritos
           </Text>
