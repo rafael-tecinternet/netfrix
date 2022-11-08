@@ -1,15 +1,15 @@
 import Home from "./src/screen/Home";
-import { StyleSheet } from "react-native";
+import { StyleSheet, StatusBar } from "react-native";
 import FormBusca from "./src/screen/FormBusca";
-import { StatusBar } from "expo-status-bar";
 import Favoritos from "./src/screen/Favoritos";
 import Sobre from "./src/screen/Sobre";
+import Privacidade from "./src/screen/Privacidade";
 
 const App = () => {
   return (
     <>
       <StatusBar barStyle="default" />
-      <Sobre />
+      <Privacidade />
     </>
   );
 };
