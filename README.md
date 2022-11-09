@@ -1,6 +1,4 @@
-# netfrix
-
-# NetFrix Filmes
+# App Dá Hora Filmes
 
 Aplicativo React Native que permite a busca por filmes usando a API **TMDB (The MovieDB Database)** e a seleção de filmes favoritos usando armazenamento offline/local no próprio dispositivo.
 
@@ -49,3 +47,49 @@ Adição de componente `StatusBar` do `react-native` no App.
 _Obs.: Não use o StatusBar do expo._
 
 Uso do componente `ScrollView` em Privacidade para suporte a rolagem de tela para conteúdos extensos.
+
+## branch 04-recursos-de-navegação
+
+Para gerenciar a navegação entre telas do nosso app, utilizamos um conjunto de diversas libs conhecidas como **React Navigation**.
+
+Site oficial e de documentação: https://reactnavigation.org/docs/getting-started/
+
+Para nosso app, é necessário instalar:
+
+`npm install @react-navigation/native`
+
+`npx expo install react-native-screens react-native-safe-area-context`
+
+`npm install @react-navigation/native-stack`
+
+No `App.js` adicionar os imports:
+
+`import { NavigationContainer } from "@react-navigation/native";`
+
+`import { createNativeStackNavigator } from "@react-navigation/native-stack";`
+
+Também no `App.js` fazemos a programação necessária para uso do `NavigationContainer`, `createNativeStackNavigator` e `Screen` das telas/componentes do nosso app.
+
+Por fim, cada botão (Pressable) existente em `Home` cujo objetivo é navegar para uma tela, deve ter sua prop `onPress` configurada para isso. \*\*Atenção: não esqueça de passar a prop `{navigation}` para o componente `Home`.
+
+## branch 05-exercicio-FormBusca
+
+1. Crie uma nova branch chamada `05-exercicio-FormBusca`
+2. Abra o componente FormBusca e programe os recursos necessários para a estruturação e estilização semelhante às imagens de referência fornecidas
+
+### Desafios:
+
+- Usar um componente de campo de entrada
+- Aplicar useState para captura do que é digitado no campo de formulário
+- Usar um componente de alerta para validação: exibir mensagem na tela caso o usuário clique no botão sem preencher nada no formulário
+- Usar o componente de alerta para mostrar mensagem dizendo "Você procurou pelo filme {nome do filme digitado}..."
+
+### Para resolver o exercício foi necessário:
+
+Componentes: SafeAreaView, View, Text, TextInput (novidade), Button (ou Pressable), Alert (novidade).
+
+Manipulação de eventos do TextInput (onChangeText) e função para captura da digitação.
+
+Manipulação de state (useState) para monitoramento de filme que será buscado.
+
+Manipulação de evento onPress do Button/Pressable para validação de entrada.

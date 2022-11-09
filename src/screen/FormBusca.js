@@ -1,17 +1,33 @@
 import {
+  Alert,
   Button,
-  Pressable,
   SafeAreaView,
   StyleSheet,
   Text,
   TextInput,
   View,
 } from "react-native";
-import React from "react";
+import { useState } from "react";
 import { Ionicons } from "@expo/vector-icons";
 
 const FormBusca = () => {
-  const [texto, onChangeText] = React.useState();
+  /* Captura em tempo real do que é digitado 
+  no textInput através do evento onChangeText */
+  const filmeDigitado = (valorDigitado) => {
+    setFilme(valorDigitado);
+  };
+  /*  Função chamada toda vez que o botão for pressionado
+  (usamos a prop onPress do Button) */
+  const buscarFilmes = () => {
+    /* Se filme (gerenciado pelo useState) estiver vazio/undefined/falsy */
+    if (!filme) {
+      return Alert.alert("Ops!", "Você deve digitar um filme!");
+    }
+    Alert.alert("Você procurou por: ", filme);
+  };
+  /* Hook useState para monitorar/armazenar o filme
+  que será buscado a apartir do formulário */
+  const [filme, setFilme] = useState("");
   return (
     <SafeAreaView style={estilos.container}>
       <Text style={estilos.texto}>
@@ -24,12 +40,11 @@ const FormBusca = () => {
         <Ionicons name="film" size={48} color="black" />
         <TextInput
           style={estilos.input}
-          onChangeText={onChangeText}
-          value={texto}
           placeholder="Digite o filme..."
+          onChangeText={filmeDigitado}
         />
       </View>
-      <Button title="PROCURAR" color="#5451a6" />
+      <Button title="PROCURAR" color="#5451a6" onPress={buscarFilmes} />
     </SafeAreaView>
   );
 };
