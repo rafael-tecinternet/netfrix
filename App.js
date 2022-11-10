@@ -7,6 +7,7 @@ import FormBusca from "./src/screen/FormBusca";
 import Favoritos from "./src/screen/Favoritos";
 import Sobre from "./src/screen/Sobre";
 import Privacidade from "./src/screen/Privacidade";
+import Resultados from "./src/screen/Resultados";
 
 const App = () => {
   /* Iniciando através de uma constante o 
@@ -36,9 +37,11 @@ const App = () => {
             name="FormBusca"
             options={{ title: "Buscar Filmes" }}
           />
+
           <Stack.Screen component={Favoritos} name="Favoritos" />
           <Stack.Screen component={Privacidade} name="Privacidade" />
           <Stack.Screen component={Sobre} name="Sobre" />
+          <Stack.Screen component={Resultados} name="Resultados" />
         </Stack.Navigator>
       </NavigationContainer>
     </>
