@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
-import { Image, SafeAreaView, StyleSheet, Text, View } from "react-native";
+import { FlatList, SafeAreaView, StyleSheet, Text, View } from "react-native";
 import api from "../services/api";
 import apiKey from "../../apiKey";
 import Loading from "../components/Loading";
+import CardFilme from "../components/CardFilme";
+import itemSeparador from "../components/itemSeparador";
 const Resultados = ({ route }) => {
   /* Usamos a prop route (do React Navigation) para acessar os 
   parâmetros desta rota de navegação e extrair os dados 
@@ -42,7 +44,6 @@ const Resultados = ({ route }) => {
     buscarFilmes();
   }, []);
 
-  if (loading) return <Loading />;
   return (
     <SafeAreaView style={estilos.container}>
       <Text>Você buscou por: {filme}.</Text>
@@ -50,20 +51,16 @@ const Resultados = ({ route }) => {
       {loading && <Loading />}
       <View style={estilos.viewFilmes}>
         {/* Se o loading for false, renderize o resultado map */}
-        {!loading &&
-          resultados.map((resultado) => {
-            return (
-              <View key={resultado.id}>
-                <Image
-                  style={estilos.imagem}
-                  source={{
-                    uri: `https://image.tmdb.org/t/p/original/${resultado.poster_path}`,
-                  }}
-                />
-                <Text>{resultado.title}</Text>
-              </View>
-            );
-          })}
+        {!loading && (
+          <FlatList
+            ItemSeparatorComponent={itemSeparador}
+            data={resultados}
+            renderItem={({ item }) => {
+              return <CardFilme filme={item} />;
+            }}
+            keyExtractor={(item) => item.id}
+          />
+        )}
       </View>
     </SafeAreaView>
   );
@@ -78,8 +75,5 @@ const estilos = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
-  },
-  imagem: {
-    height: 125,
   },
 });
