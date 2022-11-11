@@ -46,10 +46,14 @@ const Resultados = ({ route }) => {
   return (
     <SafeAreaView style={estilos.container}>
       <Text>Você buscou por: {filme}.</Text>
+      {/* Sintaxe de if valuate usando &&, se loading for true, renderize <Loading/> */}
+      {loading && <Loading />}
       <View style={estilos.viewFilmes}>
-        {resultados.map((resultado) => {
-          return <Text key={resultado.id}>{resultado.title}</Text>;
-        })}
+        {/* Se o loading for false, renderize o resultado map */}
+        {!loading &&
+          resultados.map((resultado) => {
+            return <Text key={resultado.id}>{resultado.title}</Text>;
+          })}
       </View>
     </SafeAreaView>
   );
