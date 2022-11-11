@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { SafeAreaView, StyleSheet, Text, View } from "react-native";
 import api from "../services/api";
 import apiKey from "../../apiKey";
+import Loading from "../components/Loading";
 const Resultados = ({ route }) => {
   /* Usamos a prop route (do React Navigation) para acessar os 
   parâmetros desta rota de navegação e extrair os dados 
@@ -41,8 +42,7 @@ const Resultados = ({ route }) => {
     buscarFilmes();
   }, []);
 
-  if (loading) return <Text>Carregando Filmes...</Text>;
-
+  if (loading) return <Loading />;
   return (
     <SafeAreaView style={estilos.container}>
       <Text>Você buscou por: {filme}.</Text>
