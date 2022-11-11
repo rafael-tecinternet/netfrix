@@ -9,6 +9,7 @@ const Resultados = ({ route }) => {
   const { filme } = route.params;
 
   const [resultados, setResultados] = useState([]);
+  const [loading, setLoading] = useState(true);
   /* useEffect: hook do React que executa operações no momento 
   em que o componente (neste caso, Resultado) é renderizado */
   useEffect(() => {
@@ -30,13 +31,18 @@ const Resultados = ({ route }) => {
           },
         });
         setResultados(resposta.data.results);
+        setInterval(() => {
+          setLoading(false);
+        }, 3000);
       } catch (error) {
         console.log("Deu Ruim na busca da API: " + error.message);
       }
     }
     buscarFilmes();
   }, []);
-  console.log(resultados);
+
+  if (loading) return <Text>Carregando Filmes...</Text>;
+
   return (
     <SafeAreaView style={estilos.container}>
       <Text>Você buscou por: {filme}.</Text>
