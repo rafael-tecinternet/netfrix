@@ -1,10 +1,9 @@
 import { StyleSheet, Text, View } from "react-native";
-import React from "react";
 
 const itemVazio = () => {
   return (
     <View>
-      <Text>itemVazio</Text>
+      <Text>Não foram localizados filmes!</Text>
     </View>
   );
 };

@@ -5,6 +5,7 @@ import apiKey from "../../apiKey";
 import Loading from "../components/Loading";
 import CardFilme from "../components/CardFilme";
 import itemSeparador from "../components/itemSeparador";
+import itemVazio from "../components/itemVazio";
 const Resultados = ({ route }) => {
   /* Usamos a prop route (do React Navigation) para acessar os 
   parâmetros desta rota de navegação e extrair os dados 
@@ -54,6 +55,7 @@ const Resultados = ({ route }) => {
         {!loading && (
           <FlatList
             ItemSeparatorComponent={itemSeparador}
+            ListEmptyComponent={itemVazio}
             data={resultados}
             renderItem={({ item }) => {
               return <CardFilme filme={item} />;
