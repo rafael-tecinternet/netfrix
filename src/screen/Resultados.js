@@ -54,6 +54,7 @@ const Resultados = ({ route }) => {
         {/* Se o loading for false, renderize o resultado map */}
         {!loading && (
           <FlatList
+            showsVerticalScrollIndicator={false}
             ItemSeparatorComponent={itemSeparador}
             ListEmptyComponent={itemVazio}
             data={resultados}
