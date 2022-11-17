@@ -2,6 +2,7 @@ import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import fotoAlternativa from "../../assets/images/foto-alternativa.jpg";
 
 const CardFilme = ({ filme }) => {
   const { title, poster_path } = filme;
@@ -15,9 +16,13 @@ const CardFilme = ({ filme }) => {
       <Image
         style={estilos.imagem}
         resizeMode="stretch"
-        source={{
-          uri: `https://image.tmdb.org/t/p/original/${poster_path}`,
-        }}
+        source={
+          filme.poster_path
+            ? {
+                uri: `https://image.tmdb.org/t/p/original/${poster_path}`,
+              }
+            : fotoAlternativa
+        }
       />
       <View style={estilos.corpo}>
         <Text style={estilos.titulo}>{title}</Text>
@@ -44,9 +49,9 @@ const estilos = StyleSheet.create({
   card: {
     marginVertical: 4,
     flexDirection: "row",
-    borderWidth: 2,
+    borderWidth: 1,
     borderStyle: "solid",
-    borderColor: "black",
+    borderColor: "#5451a6",
     justifyContent: "space-between",
     alignItems: "center",
   },
