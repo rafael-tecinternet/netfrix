@@ -15,7 +15,6 @@ const CardFilme = ({ filme }) => {
   };
   const salvar = async () => {
     /* Etapas para uso do AsyncStorage */
-
     /* 1) Carregamento do storege do aparelho (se houver, caso contrário retorna null) */
     const filmesFavoritos = await AsyncStorage.getItem("@favoritos");
     /* 2) Havendo storage prévio, transformamos os dados do filme em objeto e os guardamos numa lista (array) */
@@ -23,6 +22,15 @@ const CardFilme = ({ filme }) => {
     /* 3) Se a lista não for indefinida, vamos iniciá-la como um array vazio */
     if (!listaDeFilmes) {
       listaDeFilmes = [];
+    }
+    /* Etapa de verificação de filme já salvo */
+    /* Para cada filme existente na  listaDeFilmes (se existir) */
+    for (let filmeExistente in listaDeFilmes) {
+      /* Verificamos se o id do filme existente é igual o id do filme do card (que está na tela) */
+      if (listaDeFilmes[filmeExistente].id == filme.id) {
+        Alert.alert("Ops!", "Você já salvou este filme!");
+        return;
+      }
     }
     /* 4) Adicionamos os dados do filme na lista (array) */
     listaDeFilmes.push(filme);
