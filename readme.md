@@ -86,10 +86,96 @@ Por fim, cada botão (Pressable) existente em `Home` cujo objetivo é navegar pa
 
 ### Para resolver o exercício foi necessário:
 
-Componentes: SafeAreaView, View, Text, TextInput (novidade), Button (ou Pressable), Alert (novidade).
+Componentes: SafeAreaView, View, Text, TextInput (novidade), Button (ou Pressable), Alert (novidade)
 
 Manipulação de eventos do TextInput (onChangeText) e função para captura da digitação.
 
-Manipulação de state (useState) para monitoramento de filme que será buscado.
+Manipulação de state (useState) para monitoramento do filme que será buscado.
 
 Manipulação de evento onPress do Button/Pressable para validação de entrada.
+
+## branch 06-programação-de-busca-na-api-e-resultados
+
+**FormBusca.js**: adicionamos na função buscarFilmes a chamada `navigation.navigate("Resultados", { filme });` e removemos o `Alert.alert("Você procurou por: ", filme);` usado na branch 05.
+
+_Obs.:_ não se esqueça de adicionar a prop `{navigation}` na const do component `FormBusca`.
+
+**Resultados.js**: criamos este novo componente que funcionará como uma tela de apresentação dos resultados da busca de filmes.
+
+Adicionamos também a prop `{route}` e através dela acessamos o `filme` que foi digitado em `FormBusca`.
+
+**App.js**: adicionamos a nova tela para navegação:
+`<Stack.Screen component={Resultados} name="Resultados" />`
+
+### API
+
+Instalação da lib axios: `npm install axios`
+
+**services/api.js**: programos o `import` do axios e url base da API.
+
+**Resultados.js**:
+
+- programamos o state de resultados e o acesso à API **TMDB** usando recursos do axios.
+- programamos um `map` básico para testar a exibição dos resultados.
+
+## branch 07-melhorias-na-busca-e-resultados
+
+- Remoção de comentários
+- Programação do componente `Loading` usando recursos nativos do `ActivityIndicator`
+- Uso de renderização condicional com operador `&&`
+- Em `Resultados`, programação para carregamento da imagem do filme
+
+## branch 08-FlatList-e-componentes-adicionais
+
+- Em `Resultados`, aplicação do componente nativo `FlatList` para carregamento dos filmes
+
+`FlatList` é semelhante ao `ScrollView`, no entanto, tem uma perfomance melhor para carregamento de dados cujo volume é grande, variável e vindos de fontes externas (APIs).
+
+- Principais `props` do `FlatList`:
+  - data: fonte de dados (no nosso app, é o array `resultados`)
+  - renderItem: função que retorna o componente personalizado com os dados (`item`) existentes em `resultados`
+  - keyExtractor: função que extrai dos dados (`item`) um valor que servirá como `key` para cada registro (em nosso app, `id`)
+  - [opcional] ItemSeparatorComponent: aponta para um componente personalizado responsável por servir como um separador de itens (em nosso app, o item é cada filme)
+  - [opcional] ListEmptyComponent: aponta para um componente personalizado responsável por exibir uma mensagem para o caso de não existir itens (ou seja, resultados sem filmes)
+
+### Atualizações de 16/11:
+
+- Melhorias na estilização e layout do `CardFilme`
+- Ajustes na estilização do `ItemSeparador`
+
+## branch 09-tela-de-detalhe-do-filme
+
+- Criação e estilização do componente/tela `Detalhes`
+- Adição dele ao `App.js` na pilha de telas (Stack.Screen)
+- Em `CardFilme` usamos o hook `useNavigation` para ter acesso à `navigation.navigate()` e com isso programar a ação de navegar para `Detalhes` usando `onPress` e função `leiaMais` passando objeto `filme` como parâmetro da rota.
+- Em `Detalhes` recuperamos os dados do `filme` via props de `route.params`
+- Estruturação do layout em `Detalhes` usando componente `ImageBackground` e diversos recursos de estilos.
+- No `App.js` adicionamos `options` ao `Stack.Scren` de `Detalhes` para exibição de um botão de retorno à tela `Home`
+
+### Atualizações de 17/11:
+
+- Programação de exibição condicional de imagem alternativa para o caso de um filme não ter foto de fundo e de capa
+- Formatação da data de lançamento do filme para exibição como dia/mês/ano
+
+## branch 10-favoritos-com-async-storage
+
+`AsyncStorage` é uma biblioteca mantida pela equipe do **Expo** que permite armazenar dados offline em formato de string no dispositivo do usuário. É uma biblioteca semelhante à API Web `localStorage` usada em sites.
+
+- Instalação da lib AsynStorage: `npx expo install @react-native-async-storage/async-storage`
+- Em `CardFilme` importamos a lib e programamos as ações necessárias para salvar um filme no storage `@favoritos`
+- Em `Favoritos` importamos a lib e programamos as ações necessárias para carregamento de todos os favoritos salvos
+- Em `Favoritos` programamos as ações necessárias para exclusão de todos os favoritos
+
+### Atualizações de 18/11:
+
+- Em `Favoritos`:
+
+  - Finalização da estruturação e estilização dos componentes da tela
+  - Programação de função para exclusão de **UM** favorito da lista e do storage com atualização do render na tela
+  - Melhorias na programação da função de exclusão de **TODOS** os favoritos usando `Alert` customizado com botões de cancelamento e confirmação
+  - Programação de função para ver os detalhes de um filme escolhido na lista de favoritos (usamos o hook `useNavigation` passando como parâmetro para a tela de `Detalhes` os dados do filme favorito selecionado)
+
+- Em `CardFilme`:
+  - Programação para verificar se um filme já foi salvo na lista de favoritos usando loop `for/in` com `if`.
+  - `Alert` informando que o filme já foi salvo
+  - `Vibration` para dar feedback sensorial no aparelho
